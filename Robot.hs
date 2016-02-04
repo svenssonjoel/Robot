@@ -68,6 +68,17 @@ instance Monad Program where
   return = Return
   (>>=)  = Bind
 
+instance Functor Program where 
+  fmap = liftM
+
+instance Applicative Program where 
+  pure = return 
+  (<*>) u v = 
+    do 
+     f <- u 
+     x <- v
+     return (f x) 
+
 move = Move
 turnRight = TurnRight
 turnLeft = TurnLeft
